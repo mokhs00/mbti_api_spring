@@ -1,0 +1,24 @@
+package com.toy.mbti.repository;
+
+
+import com.toy.mbti.domain.Result;
+import org.springframework.stereotype.Repository;
+
+import javax.persistence.EntityManager;
+import java.util.Optional;
+
+@Repository
+public class JpaResultRepository implements ResultRepository {
+
+    private final EntityManager em;
+
+    public JpaResultRepository(EntityManager em) {
+        this.em = em;
+    }
+
+    @Override
+    public Optional<Result> findById(Long id) {
+        return Optional.ofNullable(em.find(Result.class, id));
+    }
+
+}
