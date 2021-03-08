@@ -5,16 +5,27 @@ import javax.persistence.*;
 @Entity
 public class Question {
 
-
     @Id
-    @GeneratedValue
-    @Column(name = "question_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
 
     private String text;
 
+
+    public Long getId() {
+        return id;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public String getText() {
+        return text;
+    }
 }

@@ -5,8 +5,8 @@ import javax.persistence.*;
 @Entity
 public class Result {
     @Id
-    @GeneratedValue
-    @Column(name = "result_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     private String value;
@@ -16,14 +16,39 @@ public class Result {
     @Column(name = "img_path")
     private String imgPath;
 
-    @OneToOne @JoinColumn(name = "positive_id")
+    @OneToOne
+    @JoinColumn(name = "positive_id")
     private Result positive;
-    @OneToOne @JoinColumn(name = "negative_id")
+    @OneToOne
+    @JoinColumn(name = "negative_id")
     private Result negative;
 
 
+    public Long getId() {
+        return id;
+    }
 
+    public String getValue() {
+        return value;
+    }
 
+    public String getTitle() {
+        return title;
+    }
 
+    public String getText() {
+        return text;
+    }
 
+    public String getImgPath() {
+        return imgPath;
+    }
+
+    public Result getPositive() {
+        return positive;
+    }
+
+    public Result getNegative() {
+        return negative;
+    }
 }
