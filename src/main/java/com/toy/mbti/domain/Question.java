@@ -1,6 +1,10 @@
 package com.toy.mbti.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Question {
@@ -10,12 +14,19 @@ public class Question {
     @Column(name = "id")
     private Long id;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
 
     private String text;
 
+    @OneToMany(mappedBy = "question")
+    private List<Choice> choices = new ArrayList<>();
+
+    public List<Choice> getChoices() {
+        return choices;
+    }
 
     public Long getId() {
         return id;
@@ -28,4 +39,5 @@ public class Question {
     public String getText() {
         return text;
     }
+
 }

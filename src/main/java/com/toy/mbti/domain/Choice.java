@@ -1,5 +1,7 @@
 package com.toy.mbti.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,7 +12,8 @@ public class Choice {
     @Column(name = "id")
     private Long id;
 
-    @ManyToOne
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "question_id")
     private Question question;
 
@@ -32,5 +35,14 @@ public class Choice {
 
     public String getValue() {
         return value;
+    }
+
+    @Override
+    public String toString() {
+        return "Choice{" +
+                "id=" + id +
+                ", text='" + text + '\'' +
+                ", value='" + value + '\'' +
+                '}';
     }
 }

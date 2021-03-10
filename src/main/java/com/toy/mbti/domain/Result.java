@@ -16,10 +16,10 @@ public class Result {
     @Column(name = "img_path")
     private String imgPath;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "positive_id")
     private Result positive;
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "negative_id")
     private Result negative;
 

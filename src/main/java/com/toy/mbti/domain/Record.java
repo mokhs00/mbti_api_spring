@@ -1,5 +1,7 @@
 package com.toy.mbti.domain;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -15,6 +17,11 @@ public class Record {
     private Result result;
 
     private LocalDateTime day;
+
+    public Record(Result result) {
+        this.result = result;
+        this.day = LocalDateTime.now();
+    }
 
     public Long getId() {
         return id;

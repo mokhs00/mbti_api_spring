@@ -6,6 +6,7 @@ import com.toy.mbti.domain.Result;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -26,5 +27,17 @@ public class JpaRecordRepository implements RecordRepository{
     @Override
     public Optional<Record> findById(Long id) {
         return Optional.ofNullable(em.find(Record.class, id));
+    }
+
+    @Override
+    public Record record(Record record) {
+        em.persist(record);
+        return record;
+    }
+
+    @Override
+    public List<Record> findAll() {
+        return em.createQuery("SELECT r FROM Record r",Record.class)
+                .getResultList();
     }
 }

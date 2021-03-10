@@ -21,4 +21,12 @@ public class JpaResultRepository implements ResultRepository {
         return Optional.ofNullable(em.find(Result.class, id));
     }
 
+    @Override
+    public Optional<Result> findByValue(String value) {
+        return Optional.ofNullable(
+                em.createQuery("SELECT r FROM Result r WHERE value = :value", Result.class)
+                .setParameter("value", value)
+                .getSingleResult()
+        );
+    }
 }
