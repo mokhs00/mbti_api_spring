@@ -1,8 +1,8 @@
 package com.toy.mbti.service;
 
+import com.toy.mbti.controller.ResultRequest;
 import com.toy.mbti.domain.Record;
 import com.toy.mbti.domain.Result;
-import com.toy.mbti.domain.ResultDTO;
 import com.toy.mbti.repository.RecordRepository;
 import com.toy.mbti.repository.ResultRepository;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,8 @@ public class ResultService {
     }
 
     @Transactional
-    public ResultDTO result(String value){
+    public Result result(ResultRequest request){
+        String value = request.getValue();
         Result result = resultRepository.findByValue(value).orElse(null);
         if (result == null){
             return null;
@@ -29,13 +30,10 @@ public class ResultService {
     }
 
 
-    public ResultDTO record(Result result){
+    public Result record(Result result){
         Record record = new Record(result);
         recordRepository.record(record);
-        ResultDTO resultDTO = new ResultDTO(
-                result
-        );
-        return resultDTO;
+        return result;
     }
 
 

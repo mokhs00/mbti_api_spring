@@ -2,7 +2,6 @@ package com.toy.mbti.repository;
 
 
 import com.toy.mbti.domain.Record;
-import com.toy.mbti.domain.Result;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

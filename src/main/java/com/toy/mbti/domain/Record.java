@@ -1,5 +1,6 @@
 package com.toy.mbti.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
@@ -13,10 +14,15 @@ public class Record {
     @Column(name = "id")
     private Long id;
 
+    @JsonIgnore
     @ManyToOne @JoinColumn(name = "result_id")
     private Result result;
 
     private LocalDateTime day;
+
+
+    public Record() {
+    }
 
     public Record(Result result) {
         this.result = result;
@@ -34,4 +40,5 @@ public class Record {
     public LocalDateTime getDay() {
         return day;
     }
+
 }
