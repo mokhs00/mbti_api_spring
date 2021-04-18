@@ -1,5 +1,7 @@
 package com.toy.mbti.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -23,6 +25,19 @@ public class Result {
     @JoinColumn(name = "negative_id")
     private Result negative;
 
+
+    public Result() {
+    }
+
+    public Result(Long id, String value, String title, String text, String imgPath, Result positive, Result negative) {
+        this.id = id;
+        this.value = value;
+        this.title = title;
+        this.text = text;
+        this.imgPath = imgPath;
+        this.positive = positive;
+        this.negative = negative;
+    }
 
     public Long getId() {
         return id;
